@@ -1,353 +1,445 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GabrielKey</title>
+  <meta name="description" content="Apps, jogos e política de privacidade — GabrielKey">
 
-<title>Política de Privacidade - GabrielKey Studios</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 
-<script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html { scroll-behavior: smooth; }
 
-<meta name="description" content="Política de Privacidade aplicável a todos os aplicativos, jogos e serviços desenvolvidos pela GabrielKey Studios.">
+    .gradient-text {
+      background: linear-gradient(135deg, #818cf8, #a78bfa, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
-<style>
-html {
-    scroll-behavior: smooth;
-}
-</style>
+    .nav-blur {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
 
+    .card-hover {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.12);
+    }
+
+    /* Botões de idioma */
+    .lang-btn          { transition: all 0.15s ease; }
+    .lang-btn.active   { background-color: #6366f1; color: #fff; }
+    .lang-btn.inactive { color: #94a3b8; }
+  </style>
 </head>
-<body class="bg-slate-950 text-slate-200">
+<body class="bg-slate-950 text-slate-200 antialiased">
 
-<div class="max-w-6xl mx-auto px-6 py-10">
+  <!-- ═══════════════════════════════════════════════════════════
+       NAV
+  ════════════════════════════════════════════════════════════ -->
+  <nav class="sticky top-0 z-50 bg-slate-950/85 nav-blur border-b border-slate-800/60">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
 
-<header class="mb-10">
-    <h1 class="text-4xl font-bold mb-4">
-        Política de Privacidade
+      <!-- Logo -->
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5S14.67 12 15.5 12s1.5.67 1.5 1.5S16.33 15 15.5 15zm3-3c-.83 0-1.5-.67-1.5-1.5S17.67 10 18.5 10s1.5.67 1.5 1.5S19.33 12 18.5 12z"/>
+          </svg>
+        </div>
+        <span class="font-bold text-white">GabrielKey</span>
+      </div>
+
+      <!-- Links + seletor de idioma -->
+      <div class="flex items-center gap-3 sm:gap-6">
+        <div class="hidden sm:flex items-center gap-5 text-sm">
+          <a href="#apps"    class="text-slate-400 hover:text-white transition-colors" data-i18n="nav.apps">Apps &amp; Jogos</a>
+          <a href="#privacy" class="text-slate-400 hover:text-white transition-colors" data-i18n="nav.privacy">Privacidade</a>
+          <a href="#contact" class="text-slate-400 hover:text-white transition-colors" data-i18n="nav.contact">Contato</a>
+        </div>
+
+        <!-- Seletor PT / EN com bandeiras -->
+        <div class="flex rounded-lg overflow-hidden border border-slate-700 text-sm font-medium">
+          <button id="btn-pt" onclick="setLang('pt')"
+                  class="lang-btn active flex items-center gap-1.5 px-3 py-1.5"
+                  aria-label="Português">
+            <img src="assets/flags/br.svg" class="w-5 h-3.5 rounded-sm object-cover" alt="">
+            <span>PT</span>
+          </button>
+          <button id="btn-en" onclick="setLang('en')"
+                  class="lang-btn inactive flex items-center gap-1.5 px-3 py-1.5"
+                  aria-label="English">
+            <img src="assets/flags/us.svg" class="w-5 h-3.5 rounded-sm object-cover" alt="">
+            <span>EN</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       HERO
+  ════════════════════════════════════════════════════════════ -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 pt-20 pb-16 text-center">
+
+    <div class="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-medium px-4 py-1.5 rounded-full mb-6 uppercase tracking-wider">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+      </svg>
+      <span data-i18n="hero.badge">Desenvolvedor Independente</span>
+    </div>
+
+    <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight">
+      <span data-i18n="hero.title1">Apps &amp; Jogos</span><br>
+      <span class="gradient-text" data-i18n="hero.title2">com Privacidade</span>
     </h1>
 
-    <p class="text-slate-400">
-        Última atualização: 27 de Junho de 2026
+    <p class="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10"
+       data-i18n="hero.subtitle">
+      Desenvolvemos experiências digitais com respeito à sua privacidade e segurança.
     </p>
 
-    <p class="mt-6 text-lg text-slate-300">
-        Esta Política de Privacidade descreve como a GabrielKey Studios coleta,
-        utiliza, compartilha, armazena e protege informações relacionadas aos
-        usuários de seus aplicativos, jogos, websites e serviços digitais.
-    </p>
-</header>
-
-<div class="bg-slate-900 rounded-2xl border border-slate-800 p-8 space-y-10">
-
-<section>
-<h2 class="text-2xl font-bold mb-4">
-1. Quem Somos
-</h2>
-
-<p class="leading-8">
-GabrielKey Studios é uma desenvolvedora independente responsável pela criação,
-publicação e manutenção de aplicativos, jogos e plataformas digitais distribuídas
-através da Google Play Store, App Store e outros meios eletrônicos.
-</p>
-</section>
-
-<section>
-<h2 class="text-2xl font-bold mb-4">
-2. Aplicação Desta Política
-</h2>
-
-<p class="leading-8">
-Esta Política se aplica a todos os aplicativos, jogos, websites e serviços
-publicados ou operados pela GabrielKey Studios, independentemente da plataforma,
-dispositivo ou tecnologia utilizada.
-</p>
-</section>
-
-<section>
-<h2 class="text-2xl font-bold mb-4">
-3. Dados Que Podemos Coletar
-</h2>
-
-<p class="mb-4">
-Dependendo do aplicativo ou jogo utilizado, podemos coletar:
-</p>
-
-<ul class="list-disc ml-8 space-y-2">
-
-<li>Nome de usuário;</li>
-<li>Endereço de e-mail;</li>
-<li>Identificadores do dispositivo;</li>
-<li>Endereço IP;</li>
-<li>Informações do navegador;</li>
-<li>Modelo do dispositivo;</li>
-<li>Sistema operacional;</li>
-<li>Idioma configurado;</li>
-<li>País e região;</li>
-<li>Informações de desempenho;</li>
-<li>Relatórios de falhas (crash reports);</li>
-<li>Dados de uso do aplicativo;</li>
-<li>Dados estatísticos e analíticos;</li>
-<li>Identificadores de publicidade;</li>
-<li>Dados enviados voluntariamente pelo usuário.</li>
-
-</ul>
-</section>
-
-<section>
-<h2 class="text-2xl font-bold mb-4">
-4. Dados Que NÃO Coletamos Intencionalmente
-</h2>
-
-<p class="leading-8">
-Não coletamos intencionalmente informações sensíveis como dados bancários,
-senhas de terceiros, documentos governamentais, informações biométricas,
-origem racial, opiniões políticas, crenças religiosas ou quaisquer outras
-informações consideradas sensíveis pela legislação aplicável, salvo quando
-expressamente informado em um aplicativo específico.
-</p>
-</section>
-
-<section>
-<h2 class="text-2xl font-bold mb-4">
-5. Como Utilizamos os Dados
-</h2>
-
-<ul class="list-disc ml-8 space-y-2">
-<li>Fornecer funcionalidades dos aplicativos;</li>
-<li>Melhorar a experiência do usuário;</li>
-<li>Analisar desempenho dos serviços;</li>
-<li>Corrigir erros e falhas;</li>
-<li>Combater fraudes e abusos;</li>
-<li>Garantir segurança da plataforma;</li>
-<li>Exibir anúncios quando aplicável;</li>
-<li>Cumprir obrigações legais;</li>
-<li>Prestar suporte técnico.</li>
-</ul>
-
-</section>
-
-<section>
-<h2 class="text-2xl font-bold mb-4">
-6. Publicidade e Anúncios
-</h2>
-
-<p class="leading-8">
-Alguns aplicativos podem utilizar plataformas de publicidade de terceiros,
-incluindo Google AdMob e parceiros de anúncios, para exibição de conteúdo
-publicitário.
-</p>
-
-<p class="leading-8 mt-4">
-Esses provedores podem utilizar identificadores de publicidade, endereço IP,
-dados aproximados de localização e informações do dispositivo para exibir
-anúncios mais relevantes e medir o desempenho das campanhas.
-</p>
-
-</section>
-
-<section>
-<h2 class="text-2xl font-bold mb-4">
-7. Serviços de Terceiros
-</h2>
-
-<p class="mb-4">
-Nossos aplicativos podem integrar serviços de terceiros, incluindo:
-</p>
-
-<ul class="list-disc ml-8 space-y-2">
-<li>Google Play Services;</li>
-<li>Google Analytics for Firebase;</li>
-<li>Firebase Crashlytics;</li>
-<li>Google AdMob;</li>
-<li>Google Cloud;</li>
-<li>Serviços de autenticação;</li>
-<li>Serviços de armazenamento em nuvem;</li>
-<li>APIs externas utilizadas pelo aplicativo.</li>
-</ul>
-
-<p class="mt-4">
-Cada serviço possui sua própria política de privacidade.
-</p>
-
-</section>
-
-<section>
-<h2 class="text-2xl font-bold mb-4">
-8. Compartilhamento de Informações
-</h2>
-
-<p class="leading-8">
-Não vendemos informações pessoais dos usuários.
-</p>
-
-<p class="leading-8 mt-4">
-Informações poderão ser compartilhadas apenas quando necessário para:
-</p>
-
-<ul class="list-disc ml-8 mt-4 space-y-2">
-<li>Prestação do serviço;</li>
-<li>Cumprimento de obrigações legais;</li>
-<li>Proteção contra fraudes;</li>
-<li>Determinação judicial;</li>
-<li>Investigação de atividades ilícitas;</li>
-<li>Integração com provedores necessários ao funcionamento do aplicativo.</li>
-</ul>
-
-</section>
-
-<section>
-<h2 class="text-2xl font-bold mb-4">
-9. Segurança dos Dados
-</h2>
-
-<p class="leading-8">
-Empregamos medidas técnicas e organizacionais razoáveis para proteger os dados
-contra perda, alteração, acesso não autorizado, divulgação indevida ou destruição.
-</p>
-
-<p class="leading-8 mt-4">
-Entretanto, nenhum sistema é completamente seguro e não podemos garantir
-segurança absoluta.
-</p>
-
-</section>
-
-<section>
-<h2 class="text-2xl font-bold mb-4">
-10. Retenção dos Dados
-</h2>
-
-<p class="leading-8">
-Os dados serão armazenados apenas pelo período necessário para cumprir as
-finalidades descritas nesta Política, requisitos legais ou obrigações regulatórias.
-</p>
-
-<p class="leading-8 mt-4">
-Quando não forem mais necessários, os dados poderão ser removidos,
-anonimizados ou agregados.
-</p>
-
-</section>
-
-<section>
-<h2 class="text-2xl font-bold mb-4">
-11. Exclusão de Dados
-</h2>
-
-<p class="leading-8">
-Usuários poderão solicitar a exclusão de seus dados pessoais através dos canais
-de contato disponibilizados nesta Política.
-</p>
-
-<p class="leading-8 mt-4">
-Solicitações serão analisadas de acordo com a legislação aplicável e limitações
-técnicas dos serviços utilizados.
-</p>
-
-</section>
-
-<section>
-<h2 class="text-2xl font-bold mb-4">
-12. Direitos dos Usuários
-</h2>
-
-<p class="mb-4">
-Dependendo da legislação local, os usuários poderão solicitar:
-</p>
-
-<ul class="list-disc ml-8 space-y-2">
-<li>Acesso aos seus dados;</li>
-<li>Correção de informações;</li>
-<li>Atualização cadastral;</li>
-<li>Portabilidade;</li>
-<li>Anonimização;</li>
-<li>Revogação de consentimento;</li>
-<li>Exclusão dos dados.</li>
-</ul>
-
-</section>
-
-<section>
-<h2 class="text-2xl font-bold mb-4">
-13. Crianças e Adolescentes
-</h2>
-
-<p class="leading-8">
-Nossos aplicativos não coletam intencionalmente informações pessoais de menores
-de idade sem autorização dos responsáveis legais.
-</p>
-
-<p class="leading-8 mt-4">
-Caso identifiquemos coleta indevida, as informações poderão ser removidas.
-</p>
-
-</section>
-
-<section>
-<h2 class="text-2xl font-bold mb-4">
-14. Transferência Internacional
-</h2>
-
-<p class="leading-8">
-Os dados poderão ser processados ou armazenados em servidores localizados fora
-do país de residência do usuário, inclusive em provedores internacionais de
-infraestrutura em nuvem.
-</p>
-
-</section>
-
-<section>
-<h2 class="text-2xl font-bold mb-4">
-15. Alterações Nesta Política
-</h2>
-
-<p class="leading-8">
-Esta Política poderá ser modificada periodicamente para refletir alterações
-legais, técnicas ou operacionais.
-</p>
-
-<p class="leading-8 mt-4">
-A versão mais recente estará sempre disponível nesta página.
-</p>
-
-</section>
-
-<section>
-<h2 class="text-2xl font-bold mb-4">
-16. Aplicativos Cobertos
-</h2>
-
-<p class="leading-8">
-Esta Política cobre todos os aplicativos e jogos publicados pela
-GabrielKey Studios, salvo quando um aplicativo possuir política própria
-explicitamente informada.
-</p>
-
-</section>
-
-<section>
-<h2 class="text-2xl font-bold mb-4">
-17. Contato
-</h2>
-
-<div class="bg-slate-800 rounded-xl p-6">
-
-<p><strong>Desenvolvedor:</strong> Gabriel</p>
-
-<p><strong>E-mail:</strong> flocov10@gmail.com</p>
-
-<p><strong>Assunto:</strong> Privacidade e Proteção de Dados</p>
-
-</div>
-
-</section>
-
-</div>
-
-<footer class="mt-10 text-center text-slate-500 text-sm">
-© 2026 GabrielKey Studios. Todos os direitos reservados.
-</footer>
-
-</div>
+    <div class="flex flex-wrap items-center justify-center gap-4">
+      <a href="#apps"
+         class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-6 py-3 rounded-xl transition-colors"
+         data-i18n="hero.cta1">Ver Apps &amp; Jogos</a>
+      <a href="#privacy"
+         class="border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white font-medium px-6 py-3 rounded-xl transition-colors"
+         data-i18n="hero.cta2">Política de Privacidade</a>
+    </div>
+
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       PLATAFORMAS
+  ════════════════════════════════════════════════════════════ -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 pb-16">
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-5 text-center">
+        <div class="text-2xl font-bold text-white mb-1">Android</div>
+        <div class="text-slate-500 text-sm">Google Play</div>
+      </div>
+      <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-5 text-center">
+        <div class="text-2xl font-bold text-white mb-1">iOS</div>
+        <div class="text-slate-500 text-sm">App Store</div>
+      </div>
+      <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-5 text-center">
+        <div class="text-3xl mb-1">🎮</div>
+        <div class="text-slate-500 text-sm" data-i18n="platform.games">Jogos</div>
+      </div>
+      <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-5 text-center">
+        <div class="text-3xl mb-1">📱</div>
+        <div class="text-slate-500 text-sm" data-i18n="platform.apps">Aplicativos</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       APPS & JOGOS
+       ─────────────────────────────────────────────────────────
+       Como adicionar um novo app/jogo:
+       1. Copie um bloco de card abaixo
+       2. Altere: emoji, data-i18n de name/desc, badges, href
+       3. Adicione as chaves 'appX.name' e 'appX.desc' (pt + en)
+          nos arquivos assets/js/locales/pt.js e en.js
+  ════════════════════════════════════════════════════════════ -->
+  <section id="apps" class="max-w-6xl mx-auto px-4 sm:px-6 pb-24">
+
+    <div class="mb-10">
+      <div class="flex items-center gap-2 text-indigo-400 text-xs font-semibold uppercase tracking-widest mb-3">
+        <div class="w-4 h-px bg-indigo-400"></div>
+        <span data-i18n="apps.label">NOSSOS PRODUTOS</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-3" data-i18n="apps.title">Apps &amp; Jogos</h2>
+      <p class="text-slate-400 max-w-xl" data-i18n="apps.subtitle">
+        Explore nossos aplicativos e jogos disponíveis nas principais plataformas digitais.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- CARD — Geografia: Bandeiras e Países -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 card-hover group flex flex-col">
+        <div class="flex items-start gap-4 mb-4">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500 to-blue-600 flex items-center justify-center text-2xl flex-shrink-0">
+            🌍
+          </div>
+          <div class="flex-1 min-w-0">
+            <h3 class="font-semibold text-white text-base leading-snug mb-2" data-i18n="app1.name">Geografia: Bandeiras e Países</h3>
+            <div class="flex gap-2 flex-wrap">
+              <span class="text-xs bg-green-500/10 text-green-400 border border-green-500/20 px-2 py-0.5 rounded-full">Android</span>
+            </div>
+          </div>
+        </div>
+        <p class="text-slate-400 text-sm leading-relaxed flex-1 mb-5" data-i18n="app1.desc">
+          Teste seus conhecimentos sobre países, capitais e bandeiras do mundo.
+        </p>
+        <a href="#" class="inline-flex items-center gap-2 text-indigo-400 hover:text-indigo-300 text-sm font-medium transition-colors">
+          <span data-i18n="apps.viewMore">Ver na loja</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- CARD — Em breve -->
+      <div class="bg-slate-900/40 border border-slate-800/60 border-dashed rounded-2xl p-6 flex flex-col items-center justify-center text-center gap-3 min-h-[200px]">
+        <div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-slate-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
+        </div>
+        <p class="text-slate-500 text-sm" data-i18n="apps.soon">Mais apps e jogos em breve</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       POLÍTICA DE PRIVACIDADE
+  ════════════════════════════════════════════════════════════ -->
+  <section id="privacy" class="max-w-6xl mx-auto px-4 sm:px-6 pb-24">
+
+    <div class="mb-10">
+      <div class="flex items-center gap-2 text-indigo-400 text-xs font-semibold uppercase tracking-widest mb-3">
+        <div class="w-4 h-px bg-indigo-400"></div>
+        <span data-i18n="privacy.label">DOCUMENTAÇÃO LEGAL</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-3" data-i18n="privacy.title">Política de Privacidade</h2>
+      <p class="text-slate-400 text-sm" data-i18n="privacy.updated">Última atualização: 27 de junho de 2026</p>
+    </div>
+
+    <div class="bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden">
+
+      <!-- Introdução -->
+      <div class="p-6 sm:p-8 bg-indigo-500/5 border-b border-slate-800">
+        <p class="text-slate-300 leading-relaxed" data-i18n="privacy.intro"></p>
+      </div>
+
+      <!-- Seções -->
+      <div class="divide-y divide-slate-800/70">
+
+        <div class="p-6 sm:p-8 flex gap-4 sm:gap-6">
+          <span class="text-indigo-500 font-mono text-xs font-bold mt-1 flex-shrink-0 w-6">01</span>
+          <div>
+            <h3 class="text-lg font-semibold text-white mb-3" data-i18n="s1.title">Quem Somos</h3>
+            <p class="text-slate-400 leading-relaxed text-sm" data-i18n="s1.body"></p>
+          </div>
+        </div>
+
+        <div class="p-6 sm:p-8 flex gap-4 sm:gap-6">
+          <span class="text-indigo-500 font-mono text-xs font-bold mt-1 flex-shrink-0 w-6">02</span>
+          <div>
+            <h3 class="text-lg font-semibold text-white mb-3" data-i18n="s2.title">Aplicação Desta Política</h3>
+            <p class="text-slate-400 leading-relaxed text-sm" data-i18n="s2.body"></p>
+          </div>
+        </div>
+
+        <div class="p-6 sm:p-8 flex gap-4 sm:gap-6">
+          <span class="text-indigo-500 font-mono text-xs font-bold mt-1 flex-shrink-0 w-6">03</span>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-white mb-3" data-i18n="s3.title">Dados Que Podemos Coletar</h3>
+            <p class="text-slate-400 text-sm mb-4" data-i18n="s3.intro"></p>
+            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2" data-list="s3.items"></ul>
+          </div>
+        </div>
+
+        <div class="p-6 sm:p-8 flex gap-4 sm:gap-6">
+          <span class="text-indigo-500 font-mono text-xs font-bold mt-1 flex-shrink-0 w-6">04</span>
+          <div>
+            <h3 class="text-lg font-semibold text-white mb-3" data-i18n="s4.title">Dados Que NÃO Coletamos</h3>
+            <p class="text-slate-400 leading-relaxed text-sm" data-i18n="s4.body"></p>
+          </div>
+        </div>
+
+        <div class="p-6 sm:p-8 flex gap-4 sm:gap-6">
+          <span class="text-indigo-500 font-mono text-xs font-bold mt-1 flex-shrink-0 w-6">05</span>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-white mb-3" data-i18n="s5.title">Como Utilizamos os Dados</h3>
+            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2" data-list="s5.items"></ul>
+          </div>
+        </div>
+
+        <div class="p-6 sm:p-8 flex gap-4 sm:gap-6">
+          <span class="text-indigo-500 font-mono text-xs font-bold mt-1 flex-shrink-0 w-6">06</span>
+          <div>
+            <h3 class="text-lg font-semibold text-white mb-3" data-i18n="s6.title">Publicidade e Anúncios</h3>
+            <div class="space-y-3">
+              <p class="text-slate-400 leading-relaxed text-sm" data-i18n="s6.body1"></p>
+              <p class="text-slate-400 leading-relaxed text-sm" data-i18n="s6.body2"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 sm:p-8 flex gap-4 sm:gap-6">
+          <span class="text-indigo-500 font-mono text-xs font-bold mt-1 flex-shrink-0 w-6">07</span>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-white mb-3" data-i18n="s7.title">Serviços de Terceiros</h3>
+            <p class="text-slate-400 text-sm mb-4" data-i18n="s7.intro"></p>
+            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2" data-list="s7.items"></ul>
+            <p class="text-slate-500 text-xs mt-4" data-i18n="s7.note"></p>
+          </div>
+        </div>
+
+        <div class="p-6 sm:p-8 flex gap-4 sm:gap-6">
+          <span class="text-indigo-500 font-mono text-xs font-bold mt-1 flex-shrink-0 w-6">08</span>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-white mb-3" data-i18n="s8.title">Compartilhamento de Informações</h3>
+            <p class="text-slate-400 text-sm mb-4" data-i18n="s8.body"></p>
+            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2" data-list="s8.items"></ul>
+          </div>
+        </div>
+
+        <div class="p-6 sm:p-8 flex gap-4 sm:gap-6">
+          <span class="text-indigo-500 font-mono text-xs font-bold mt-1 flex-shrink-0 w-6">09</span>
+          <div>
+            <h3 class="text-lg font-semibold text-white mb-3" data-i18n="s9.title">Segurança dos Dados</h3>
+            <div class="space-y-3">
+              <p class="text-slate-400 leading-relaxed text-sm" data-i18n="s9.body1"></p>
+              <p class="text-slate-400 leading-relaxed text-sm" data-i18n="s9.body2"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 sm:p-8 flex gap-4 sm:gap-6">
+          <span class="text-indigo-500 font-mono text-xs font-bold mt-1 flex-shrink-0 w-6">10</span>
+          <div>
+            <h3 class="text-lg font-semibold text-white mb-3" data-i18n="s10.title">Retenção dos Dados</h3>
+            <div class="space-y-3">
+              <p class="text-slate-400 leading-relaxed text-sm" data-i18n="s10.body1"></p>
+              <p class="text-slate-400 leading-relaxed text-sm" data-i18n="s10.body2"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 sm:p-8 flex gap-4 sm:gap-6">
+          <span class="text-indigo-500 font-mono text-xs font-bold mt-1 flex-shrink-0 w-6">11</span>
+          <div>
+            <h3 class="text-lg font-semibold text-white mb-3" data-i18n="s11.title">Exclusão de Dados</h3>
+            <div class="space-y-3">
+              <p class="text-slate-400 leading-relaxed text-sm" data-i18n="s11.body1"></p>
+              <p class="text-slate-400 leading-relaxed text-sm" data-i18n="s11.body2"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 sm:p-8 flex gap-4 sm:gap-6">
+          <span class="text-indigo-500 font-mono text-xs font-bold mt-1 flex-shrink-0 w-6">12</span>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-white mb-3" data-i18n="s12.title">Direitos dos Usuários</h3>
+            <p class="text-slate-400 text-sm mb-4" data-i18n="s12.intro"></p>
+            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2" data-list="s12.items"></ul>
+          </div>
+        </div>
+
+        <div class="p-6 sm:p-8 flex gap-4 sm:gap-6">
+          <span class="text-indigo-500 font-mono text-xs font-bold mt-1 flex-shrink-0 w-6">13</span>
+          <div>
+            <h3 class="text-lg font-semibold text-white mb-3" data-i18n="s13.title">Crianças e Adolescentes</h3>
+            <div class="space-y-3">
+              <p class="text-slate-400 leading-relaxed text-sm" data-i18n="s13.body1"></p>
+              <p class="text-slate-400 leading-relaxed text-sm" data-i18n="s13.body2"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 sm:p-8 flex gap-4 sm:gap-6">
+          <span class="text-indigo-500 font-mono text-xs font-bold mt-1 flex-shrink-0 w-6">14</span>
+          <div>
+            <h3 class="text-lg font-semibold text-white mb-3" data-i18n="s14.title">Transferência Internacional</h3>
+            <p class="text-slate-400 leading-relaxed text-sm" data-i18n="s14.body"></p>
+          </div>
+        </div>
+
+        <div class="p-6 sm:p-8 flex gap-4 sm:gap-6">
+          <span class="text-indigo-500 font-mono text-xs font-bold mt-1 flex-shrink-0 w-6">15</span>
+          <div>
+            <h3 class="text-lg font-semibold text-white mb-3" data-i18n="s15.title">Alterações Nesta Política</h3>
+            <div class="space-y-3">
+              <p class="text-slate-400 leading-relaxed text-sm" data-i18n="s15.body1"></p>
+              <p class="text-slate-400 leading-relaxed text-sm" data-i18n="s15.body2"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 sm:p-8 flex gap-4 sm:gap-6">
+          <span class="text-indigo-500 font-mono text-xs font-bold mt-1 flex-shrink-0 w-6">16</span>
+          <div>
+            <h3 class="text-lg font-semibold text-white mb-3" data-i18n="s16.title">Aplicativos Cobertos</h3>
+            <p class="text-slate-400 leading-relaxed text-sm" data-i18n="s16.body"></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       CONTATO
+  ════════════════════════════════════════════════════════════ -->
+  <section id="contact" class="max-w-6xl mx-auto px-4 sm:px-6 pb-24">
+    <div class="bg-gradient-to-br from-slate-900 via-indigo-950/20 to-slate-900 border border-slate-800 rounded-2xl p-8 sm:p-10">
+
+      <div class="flex items-center gap-2 text-indigo-400 text-xs font-semibold uppercase tracking-widest mb-3">
+        <div class="w-4 h-px bg-indigo-400"></div>
+        <span data-i18n="contact.label">FALE CONOSCO</span>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-bold text-white mb-2" data-i18n="contact.title">Contato</h2>
+      <p class="text-slate-400 mb-8" data-i18n="contact.subtitle">Dúvidas sobre privacidade ou seus dados? Entre em contato.</p>
+
+      <div class="grid sm:grid-cols-3 gap-4 mb-8">
+        <div class="bg-slate-800/50 rounded-xl p-4">
+          <div class="text-xs text-slate-500 uppercase tracking-wider mb-1" data-i18n="contact.devLabel">Desenvolvedor</div>
+          <div class="text-white font-medium">Gabriel</div>
+        </div>
+        <div class="bg-slate-800/50 rounded-xl p-4">
+          <div class="text-xs text-slate-500 uppercase tracking-wider mb-1" data-i18n="contact.emailLabel">E-mail</div>
+          <div class="text-white font-medium">flocov10@gmail.com</div>
+        </div>
+        <div class="bg-slate-800/50 rounded-xl p-4">
+          <div class="text-xs text-slate-500 uppercase tracking-wider mb-1" data-i18n="contact.subjectLabel">Assunto</div>
+          <div class="text-white font-medium text-sm" data-i18n="contact.subjectValue">Privacidade e Proteção de Dados</div>
+        </div>
+      </div>
+
+      <a id="mail-link"
+         href="mailto:flocov10@gmail.com?subject=Privacidade%20e%20Proteção%20de%20Dados"
+         class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-6 py-3 rounded-xl transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,12 2,6"/>
+        </svg>
+        <span data-i18n="contact.send">Enviar E-mail</span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       RODAPÉ
+  ════════════════════════════════════════════════════════════ -->
+  <footer class="border-t border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <div class="w-6 h-6 rounded bg-gradient-to-br from-indigo-500 to-violet-600"></div>
+        <span class="text-slate-400 text-sm font-medium">GabrielKey</span>
+      </div>
+      <p class="text-slate-500 text-sm">
+        © 2026 GabrielKey. <span data-i18n="footer.rights">Todos os direitos reservados.</span>
+      </p>
+      <div class="flex gap-5">
+        <a href="#apps"    class="text-slate-500 hover:text-slate-300 text-sm transition-colors" data-i18n="nav.apps">Apps &amp; Jogos</a>
+        <a href="#privacy" class="text-slate-500 hover:text-slate-300 text-sm transition-colors" data-i18n="nav.privacy">Privacidade</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Locales carregados primeiro, depois o engine de i18n -->
+  <script src="assets/js/locales/pt.js"></script>
+  <script src="assets/js/locales/en.js"></script>
+  <script src="assets/js/i18n.js"></script>
+
 </body>
 </html>
