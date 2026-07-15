@@ -15,7 +15,10 @@ function buildList(key, lang) {
     .join('');
 }
 
+let currentLang = 'pt';
+
 function setLang(lang) {
+  currentLang = lang;
   localStorage.setItem('gks-lang', lang);
   document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
 
@@ -47,6 +50,18 @@ function setLang(lang) {
 
 // Expõe globalmente para os onclick no HTML
 window.setLang = setLang;
+window.getCurrentLang = () => currentLang;
 
-// Inicializa com o idioma salvo ou PT como padrão
-setLang(localStorage.getItem('gks-lang') || 'pt');
+// Idioma inicial: ?lang= na URL (usado por /english/ e /portuguese/) > idioma
+// salvo em localStorage > PT como padrão.
+function resolveInitialLang() {
+  const urlLang = new URLSearchParams(window.location.search).get('lang');
+  if (urlLang === 'pt' || urlLang === 'en') return urlLang;
+
+  const saved = localStorage.getItem('gks-lang');
+  if (saved === 'pt' || saved === 'en') return saved;
+
+  return 'pt';
+}
+
+setLang(resolveInitialLang());
