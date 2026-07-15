@@ -33,7 +33,8 @@ window.LOCALE_EN = {
   // ── Privacy Policy ───────────────────────────────────────────
   'privacy.label':   'LEGAL DOCUMENTATION',
   'privacy.title':   'Privacy Policy',
-  'privacy.updated': 'Last updated: June 27, 2026',
+  'privacy.updated': 'Last updated: July 15, 2026',
+  'privacy.compliance': 'Compliant with Apple App Store and Google Play privacy guidelines.',
   'privacy.intro':   'This Privacy Policy describes how GabrielKey collects, uses, shares, stores and protects information related to users of its applications, games, websites and digital services.',
 
   's1.title': 'Who We Are',
