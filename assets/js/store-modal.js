@@ -10,25 +10,31 @@
 // ─────────────────────────────────────────────────────────────
 
 const STORE_MODAL_TEXT = {
-  pt: {
-    title: 'Escolha sua plataforma',
-    android: 'Android',
-    androidSub: 'Google Play',
-    ios: 'iOS',
-    iosSub: 'App Store',
-    unavailable: 'Indisponível no momento',
-    close: 'Fechar',
-  },
-  en: {
-    title: 'Choose your platform',
-    android: 'Android',
-    androidSub: 'Google Play',
-    ios: 'iOS',
-    iosSub: 'App Store',
-    unavailable: 'Not available yet',
-    close: 'Close',
-  },
+  en: { title: 'Choose your platform', android: 'Android', androidSub: 'Google Play', ios: 'iOS', iosSub: 'App Store', unavailable: 'Not available yet', close: 'Close' },
+  pt: { title: 'Escolha sua plataforma', android: 'Android', androidSub: 'Google Play', ios: 'iOS', iosSub: 'App Store', unavailable: 'Indisponível no momento', close: 'Fechar' },
+  es: { title: 'Elige tu plataforma', android: 'Android', androidSub: 'Google Play', ios: 'iOS', iosSub: 'App Store', unavailable: 'No disponible por el momento', close: 'Cerrar' },
+  fr: { title: 'Choisissez votre plateforme', android: 'Android', androidSub: 'Google Play', ios: 'iOS', iosSub: 'App Store', unavailable: 'Pas encore disponible', close: 'Fermer' },
+  de: { title: 'Wählen Sie Ihre Plattform', android: 'Android', androidSub: 'Google Play', ios: 'iOS', iosSub: 'App Store', unavailable: 'Derzeit nicht verfügbar', close: 'Schließen' },
+  it: { title: 'Scegli la tua piattaforma', android: 'Android', androidSub: 'Google Play', ios: 'iOS', iosSub: 'App Store', unavailable: 'Non ancora disponibile', close: 'Chiudi' },
+  ja: { title: 'プラットフォームを選択', android: 'Android', androidSub: 'Google Play', ios: 'iOS', iosSub: 'App Store', unavailable: '現在ご利用いただけません', close: '閉じる' },
+  ko: { title: '플랫폼을 선택하세요', android: 'Android', androidSub: 'Google Play', ios: 'iOS', iosSub: 'App Store', unavailable: '아직 이용할 수 없음', close: '닫기' },
+  ar: { title: 'اختر منصتك', android: 'Android', androidSub: 'Google Play', ios: 'iOS', iosSub: 'App Store', unavailable: 'غير متاح حاليًا', close: 'إغلاق' },
+  ru: { title: 'Выберите платформу', android: 'Android', androidSub: 'Google Play', ios: 'iOS', iosSub: 'App Store', unavailable: 'Пока недоступно', close: 'Закрыть' },
+  zh: { title: '选择您的平台', android: 'Android', androidSub: 'Google Play', ios: 'iOS', iosSub: 'App Store', unavailable: '暂不可用', close: '关闭' },
+  id: { title: 'Pilih platform Anda', android: 'Android', androidSub: 'Google Play', ios: 'iOS', iosSub: 'App Store', unavailable: 'Belum tersedia', close: 'Tutup' },
+  tr: { title: 'Platformunuzu seçin', android: 'Android', androidSub: 'Google Play', ios: 'iOS', iosSub: 'App Store', unavailable: 'Henüz kullanılamıyor', close: 'Kapat' },
+  vi: { title: 'Chọn nền tảng của bạn', android: 'Android', androidSub: 'Google Play', ios: 'iOS', iosSub: 'App Store', unavailable: 'Chưa khả dụng', close: 'Đóng' },
+  th: { title: 'เลือกแพลตฟอร์มของคุณ', android: 'Android', androidSub: 'Google Play', ios: 'iOS', iosSub: 'App Store', unavailable: 'ยังไม่พร้อมใช้งาน', close: 'ปิด' },
+  pl: { title: 'Wybierz swoją platformę', android: 'Android', androidSub: 'Google Play', ios: 'iOS', iosSub: 'App Store', unavailable: 'Jeszcze niedostępne', close: 'Zamknij' },
+  hi: { title: 'अपना प्लेटफ़ॉर्म चुनें', android: 'Android', androidSub: 'Google Play', ios: 'iOS', iosSub: 'App Store', unavailable: 'अभी उपलब्ध नहीं है', close: 'बंद करें' },
+  bn: { title: 'আপনার প্ল্যাটফর্ম নির্বাচন করুন', android: 'Android', androidSub: 'Google Play', ios: 'iOS', iosSub: 'App Store', unavailable: 'এখনও উপলব্ধ নয়', close: 'বন্ধ করুন' },
+  ur: { title: 'اپنا پلیٹ فارم منتخب کریں', android: 'Android', androidSub: 'Google Play', ios: 'iOS', iosSub: 'App Store', unavailable: 'ابھی دستیاب نہیں', close: 'بند کریں' },
+  nl: { title: 'Kies uw platform', android: 'Android', androidSub: 'Google Play', ios: 'iOS', iosSub: 'App Store', unavailable: 'Nog niet beschikbaar', close: 'Sluiten' },
 };
+
+function storeModalText() {
+  return STORE_MODAL_TEXT[window.getCurrentLang()] || STORE_MODAL_TEXT.en;
+}
 
 let storeModalEl = null;
 
@@ -73,7 +79,7 @@ function storePlatformRow(label, sublabel, url) {
       </a>`;
   }
 
-  const text = STORE_MODAL_TEXT[window.getCurrentLang()];
+  const text = storeModalText();
   return `
     <div class="flex items-center gap-3 bg-slate-800/20 border border-slate-800 rounded-xl p-4 opacity-60 cursor-not-allowed" aria-disabled="true">
       <div class="flex-1 min-w-0 text-left">
@@ -85,7 +91,7 @@ function storePlatformRow(label, sublabel, url) {
 
 function openStoreModal(appKey) {
   const links = (window.STORE_LINKS && window.STORE_LINKS[appKey]) || {};
-  const text = STORE_MODAL_TEXT[window.getCurrentLang()];
+  const text = storeModalText();
 
   if (!storeModalEl) storeModalEl = buildStoreModal();
 
