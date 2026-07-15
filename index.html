@@ -31,10 +31,6 @@
       box-shadow: 0 20px 40px rgba(99, 102, 241, 0.12);
     }
 
-    /* Botões de idioma */
-    .lang-btn          { transition: all 0.15s ease; }
-    .lang-btn.active   { background-color: #6366f1; color: #fff; }
-    .lang-btn.inactive { color: #94a3b8; }
   </style>
 </head>
 <body class="bg-slate-950 text-slate-200 antialiased">
@@ -63,20 +59,16 @@
           <a href="#contact" class="text-slate-400 hover:text-white transition-colors" data-i18n="nav.contact">Contato</a>
         </div>
 
-        <!-- Seletor PT / EN com bandeiras -->
-        <div class="flex rounded-lg overflow-hidden border border-slate-700 text-sm font-medium">
-          <button id="btn-pt" onclick="setLang('pt')"
-                  class="lang-btn active flex items-center gap-1.5 px-3 py-1.5"
-                  aria-label="Português">
-            <img src="assets/flags/br.svg" class="w-5 h-3.5 rounded-sm object-cover" alt="">
-            <span>PT</span>
+        <!-- Seletor de idioma (dropdown, populado por lang-menu.js a partir de languages.js) -->
+        <div class="relative">
+          <button id="lang-menu-btn" type="button" onclick="toggleLangMenu()"
+                  class="flex items-center gap-1.5 rounded-lg border border-slate-700 hover:border-slate-500 px-3 py-1.5 text-sm font-medium text-slate-300 transition-colors"
+                  aria-haspopup="true" aria-expanded="false">
+            <img id="lang-menu-flag" src="assets/flags/br.svg" class="w-5 h-3.5 rounded-sm object-cover flex-shrink-0" alt="">
+            <span id="lang-menu-code">PT</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 text-slate-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
           </button>
-          <button id="btn-en" onclick="setLang('en')"
-                  class="lang-btn inactive flex items-center gap-1.5 px-3 py-1.5"
-                  aria-label="English">
-            <img src="assets/flags/us.svg" class="w-5 h-3.5 rounded-sm object-cover" alt="">
-            <span>EN</span>
-          </button>
+          <div id="lang-menu-panel" class="hidden absolute right-0 mt-2 w-56 max-h-80 overflow-y-auto bg-slate-900 border border-slate-800 rounded-xl shadow-2xl py-2 z-50"></div>
         </div>
       </div>
 
@@ -442,11 +434,31 @@
     </div>
   </footer>
 
-  <!-- Locales carregados primeiro, depois o engine de i18n,
-       depois os dados/engine do modal de loja (Android/iOS) -->
-  <script src="assets/js/locales/pt.js"></script>
+  <!-- Ordem: metadados dos idiomas > cada locale > engine de i18n >
+       dropdown de idioma > dados/engine do modal de loja (Android/iOS) -->
+  <script src="assets/js/languages.js"></script>
   <script src="assets/js/locales/en.js"></script>
+  <script src="assets/js/locales/pt.js"></script>
+  <script src="assets/js/locales/es.js"></script>
+  <script src="assets/js/locales/fr.js"></script>
+  <script src="assets/js/locales/de.js"></script>
+  <script src="assets/js/locales/it.js"></script>
+  <script src="assets/js/locales/ja.js"></script>
+  <script src="assets/js/locales/ko.js"></script>
+  <script src="assets/js/locales/ar.js"></script>
+  <script src="assets/js/locales/ru.js"></script>
+  <script src="assets/js/locales/zh.js"></script>
+  <script src="assets/js/locales/id.js"></script>
+  <script src="assets/js/locales/tr.js"></script>
+  <script src="assets/js/locales/vi.js"></script>
+  <script src="assets/js/locales/th.js"></script>
+  <script src="assets/js/locales/pl.js"></script>
+  <script src="assets/js/locales/hi.js"></script>
+  <script src="assets/js/locales/bn.js"></script>
+  <script src="assets/js/locales/ur.js"></script>
+  <script src="assets/js/locales/nl.js"></script>
   <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/lang-menu.js"></script>
   <script src="assets/js/store-links.js"></script>
   <script src="assets/js/store-modal.js"></script>
 

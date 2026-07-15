@@ -1,11 +1,21 @@
 // ─────────────────────────────────────────────────────────────
 //  GabrielKey — motor de internacionalização (i18n)
-//  Depende de: locales/pt.js (window.LOCALE_PT)
-//              locales/en.js (window.LOCALE_EN)
-//  Carregados como scripts normais antes deste arquivo.
+//  Depende de: languages.js (window.LANGUAGES)
+//              locales/<code>.js (window.LOCALE_<CODE>), um por
+//              idioma listado em LANGUAGES. Carregados como
+//              scripts normais antes deste arquivo.
 // ─────────────────────────────────────────────────────────────
 
-const T = { pt: window.LOCALE_PT, en: window.LOCALE_EN };
+const T = {};
+window.LANGUAGES.forEach(({ code }) => {
+  T[code] = window[`LOCALE_${code.toUpperCase()}`];
+});
+
+const VALID_LANGS = window.LANGUAGES.map(l => l.code);
+
+function langMeta(lang) {
+  return window.LANGUAGES.find(l => l.code === lang);
+}
 
 const CHECK_ICON = `<svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 text-indigo-500 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>`;
 
@@ -18,9 +28,13 @@ function buildList(key, lang) {
 let currentLang = 'pt';
 
 function setLang(lang) {
+  if (!VALID_LANGS.includes(lang)) return;
+
   currentLang = lang;
+  const meta = langMeta(lang);
   localStorage.setItem('gks-lang', lang);
-  document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+  document.documentElement.lang = meta.htmlLang;
+  document.documentElement.dir = meta.dir;
 
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const val = T[lang][el.dataset.i18n];
@@ -37,29 +51,23 @@ function setLang(lang) {
     mailLink.href = `mailto:flocov10@gmail.com?subject=${subject}`;
   }
 
-  const btnPt = document.getElementById('btn-pt');
-  const btnEn = document.getElementById('btn-en');
-  if (lang === 'pt') {
-    btnPt.classList.replace('inactive', 'active');
-    btnEn.classList.replace('active', 'inactive');
-  } else {
-    btnEn.classList.replace('inactive', 'active');
-    btnPt.classList.replace('active', 'inactive');
-  }
+  if (typeof window.onLangChange === 'function') window.onLangChange(lang);
 }
 
-// Expõe globalmente para os onclick no HTML
+// Expõe globalmente para os onclick no HTML e para outros scripts
+// (lang-menu.js, store-modal.js) lerem o idioma ativo.
 window.setLang = setLang;
 window.getCurrentLang = () => currentLang;
 
-// Idioma inicial: ?lang= na URL (usado por /english/ e /portuguese/) > idioma
-// salvo em localStorage > PT como padrão.
+// Idioma inicial: ?lang= na URL (usado pelas pastas english/,
+// portuguese/, spanish/ etc.) > idioma salvo em localStorage > PT
+// como padrão.
 function resolveInitialLang() {
   const urlLang = new URLSearchParams(window.location.search).get('lang');
-  if (urlLang === 'pt' || urlLang === 'en') return urlLang;
+  if (VALID_LANGS.includes(urlLang)) return urlLang;
 
   const saved = localStorage.getItem('gks-lang');
-  if (saved === 'pt' || saved === 'en') return saved;
+  if (VALID_LANGS.includes(saved)) return saved;
 
   return 'pt';
 }
