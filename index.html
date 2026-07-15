@@ -168,7 +168,7 @@
       <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 card-hover group flex flex-col">
         <div class="flex items-start gap-4 mb-4">
           <div class="w-14 h-14 rounded-2xl overflow-hidden flex-shrink-0">
-            <img src="assets/apps/geo.png" alt="Geografia: Bandeiras e Países" class="w-full h-full object-cover">
+            <img src="assets/apps/geo.png" alt="Geografia: Bandeiras e Países" class="w-full h-full object-cover" loading="lazy" width="56" height="56">
           </div>
           <div class="flex-1 min-w-0">
             <h3 class="font-semibold text-white text-base leading-snug mb-2" data-i18n="app1.name">Geografia: Bandeiras e Países</h3>
@@ -180,10 +180,11 @@
         <p class="text-slate-400 text-sm leading-relaxed flex-1 mb-5" data-i18n="app1.desc">
           Teste seus conhecimentos sobre países, capitais e bandeiras do mundo.
         </p>
-        <a href="#" class="inline-flex items-center gap-2 text-indigo-400 hover:text-indigo-300 text-sm font-medium transition-colors">
+        <button type="button" onclick="openStoreModal('app1')"
+                class="inline-flex items-center gap-2 text-indigo-400 hover:text-indigo-300 text-sm font-medium transition-colors">
           <span data-i18n="apps.viewMore">Ver na loja</span>
           <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
+        </button>
       </div>
 
       <!-- CARD — Em breve -->
@@ -436,10 +437,13 @@
     </div>
   </footer>
 
-  <!-- Locales carregados primeiro, depois o engine de i18n -->
+  <!-- Locales carregados primeiro, depois o engine de i18n,
+       depois os dados/engine do modal de loja (Android/iOS) -->
   <script src="assets/js/locales/pt.js"></script>
   <script src="assets/js/locales/en.js"></script>
   <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/store-links.js"></script>
+  <script src="assets/js/store-modal.js"></script>
 
 </body>
 </html>
